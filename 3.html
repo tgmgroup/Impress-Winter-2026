@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<!-- <meta
+			name="viewport"
+			content="width=1920, height=1080, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>-->
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Impress Magazine - Winter, 2026</title>
+		<link rel="stylesheet" href="/assets/css/styles.css" />
+		<link rel="icon" type="image/x-icon" href="/assets/nav-images/logo.png" />
+		<link id="favicon" rel="shortcut icon" href="/assets/nav-images/logo.png" />
+
+		<link href="/assets/css/styles-slideshow.css" rel="stylesheet" />
+
+		<link href="/assets/css/styles-tooltip.css" rel="stylesheet" />
+		<link href="/assets/css/styles-modal.css" rel="stylesheet" />
+		<link href="/assets/css/styles-modal-split.css" rel="stylesheet" />
+		<link href="/assets/css/styles-audio-player.css" rel="stylesheet" />
+
+		<script type="text/javascript" src="/assets/scripts/scripts.js"></script>
+
+		<script>
+			(function () {
+				try {
+					const savedTheme = localStorage.getItem("theme");
+					const prefersDark = window.matchMedia(
+						"(prefers-color-scheme: dark)"
+					).matches;
+					if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+						document.documentElement.classList.add("dark");
+					} else if (savedTheme === "light") {
+						document.documentElement.classList.remove("dark");
+					} else {
+						// Default to dark if nothing set and system isn't dark
+						document.documentElement.classList.add("dark");
+					}
+				} catch (e) {
+					console.error("Error applying initial theme class:", e);
+				}
+			})();
+		</script>
+	</head>
+	<body>
+		<nav id="icon-nav">
+			<a
+				href="https://impress.isesaki.in"
+				aria-label="Impress Magazine Gallery"
+				class="slide-nav-trigger"
+				data-target-slide="slide-alpha"
+				>&#128213;</a
+			>
+			<a
+				href="index.html"
+				aria-label="Front Cover"
+				class="slide-nav-trigger"
+				data-target-slide="slide-beta"
+				>&#x23EA;</a
+			>
+			<a href="1.html" aria-label="1">&#x0031;</a>
+			<a href="1.html" aria-label="2">&#x0032;</a>
+			<a href="3.html" aria-label="3">&#x0033;</a>
+			<a href="3.html" aria-label="4">&#x0034;</a>
+			<a href="5.html" aria-label="5">&#x0035;</a>
+			<a href="5.html" aria-label="6">&#x0036;</a>
+			<a href="cover.html" aria-label="Back Cover">&#x23E9;</a>
+			<a href="about.html" aria-label="About">&#128209;</a>
+			<button id="theme-toggle" aria-label="Switch theme"></button>
+
+			<button id="snow-toggle" aria-label="Toggle Snowflakes">&#x2744;</button>
+		</nav>
+
+		<main id="hero">
+			<div id="container">
+				<!-- Your website content goes here -->
+
+				<div class="item sidebar sidebar-left"></div>
+
+				<div class="item gap-left"></div>
+
+				<div
+					class="item content-center"
+					id="page-content"
+					style="
+						background-image: url('/assets/Web/page034.jpg');
+						background-size: contain;
+						background-position: center;
+						background-repeat: no-repeat;
+					"
+					data-page-number="3"
+					data-prev-page="1.html"
+					data-next-page="5.html"
+					data-landscape-bg="/assets/Web/page034.jpg"
+					data-portrait-left="/assets/Web/page03.jpg"
+					data-portrait-right="/assets/Web/page04.jpg"
+				>
+					<div class="left-content">
+						<div class="items hidden-text" id="text1-2">
+							<!-- Modal content -->
+							<div class="modal-content-slideshow">
+								<div class="modal-header">
+									<span
+										class="close clickable"
+										onClick="ResetPlayAndShowWithNav('audio1-2', 'text1-2', 'play1-2','prev-portrait', 'next-portrait')"
+										>&times;</span
+									>
+								</div>
+
+								<div class="modal-body" style="display: flex">
+									<!-- Add the image slideshow here -->
+									<div id="slideshow-container2" class="slideshow-container">
+										<!-- Slides -- Change for SlideShow1 or 2 -->
+										<div class="mySlides1">
+											<div class="slide-content">
+												<div class="image-panel">
+													<img
+														src="/assets/Web/Aikawa/chonmage vs sagemizuraAa.png"
+														class="slide-image"
+														alt="Chon-mage vs. Sage-mizura"
+													/>
+												</div>
+												<div
+													class="caption-container"
+													style="vertical-align: middle"
+												>
+													<audio
+														controls
+														style="
+															width: 400px;
+															height: 40px;
+															border-radius: 8px;
+															padding: 5px;
+															position: relative;
+															left: 0px;
+														"
+													>
+														<source
+															src="assets/audio/audio3-2a.mp3"
+															type="audio/mpeg"
+														/>
+														Your browser does not support the audio element.</audio
+													><br /><br />
+													<p
+														style="
+															font-size: 2rem;
+															line-height: 1.8;
+															text-align: center;
+															vertical-align: middle;
+														"
+													>
+														Before you read, please try to answer these four
+														questions: <br />
+													</p>
+													<ol
+														style="
+															font-size: 1.7rem;
+															line-height: 1.8;
+															text-align: left;
+															padding-left: 5%;
+														"
+													>
+														<li>What did Ryan want to be in the 5th grade?</li>
+														<li>Where did he go during summer vacation?</li>
+														<li>What kind of things are there?</li>
+														<li>
+															Does he like the <i>chon-mage</i> or
+															<i>sage-mizura</i> hairstyles?
+														</li>
+													</ol>
+
+													<div class="numbertext">1 / 8</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="mySlides1">
+											<div class="slide-content">
+												<div class="image-panel">
+													<img
+														src="/assets/Web/Aikawa/Ryan.jpg"
+														class="slide-image"
+														alt="Ryan"
+													/>
+												</div>
+												<div class="caption-container">
+													<audio
+														controls
+														style="
+															width: 400px;
+															height: 40px;
+															border-radius: 8px;
+															padding: 5px;
+															position: relative;
+															left: 0px;
+														"
+													>
+														<source
+															src="assets/audio/audio3-2b.mp3"
+															type="audio/mpeg"
+														/>
+														Your browser does not support the audio element.</audio
+													><br /><br />
+													<p
+														style="
+															font-size: 2rem;
+															line-height: 1.8;
+															text-align: center;
+															vertical-align: middle;
+														"
+													>
+														“What do you want to be when you grow up?” asked Ms.
+														Kendrick, my 5th grade teacher. “An
+														<span class="tooltip"
+															>archaeologist<span class="tooltiptext"
+																>考古学者</span
+															></span
+														>”, replied younger me. I really wanted to dig up
+														the past and find adventure in my future. Thirty
+														years later and here I am, an ALT, in lovely
+														Isesaki. So, did I give up on my dream?
+														<span class="tooltip"
+															>Absolutely<span class="tooltiptext"
+																>絶対に</span
+															></span
+														>
+														not.
+													</p>
+
+													<div class="numbertext">2 / 8</div>
+												</div>
+											</div>
+										</div>
+										<div class="mySlides1">
+											<div class="slide-content">
+												<div class="image-panel">
+													<img
+														src="/assets/Web/Aikawa/IMG_3721a.jpg"
+														class="slide-image"
+														alt="Aikawa Archaeology Museum"
+													/>
+												</div>
+												<div class="caption-container">
+													<audio
+														controls
+														style="
+															width: 400px;
+															height: 40px;
+															border-radius: 8px;
+															padding: 5px;
+															position: relative;
+															left: 0px;
+														"
+													>
+														<source
+															src="assets/audio/audio3-2c.mp3"
+															type="audio/mpeg"
+														/>
+														Your browser does not support the audio element.</audio
+													><br /><br />
+													<p
+														style="
+															font-size: 2rem;
+															text-indent: 1rem;
+															line-height: 1.9;
+															margin-top: 0.5rem;
+															padding: 0rem;
+															text-align: justify;
+														"
+													>
+														During the summer break, I visited the
+														<span class="tooltip"
+															>Aikawa Archaeology Museum<span
+																class="tooltiptext"
+																>相川考古館</span
+															></span
+														>
+														where I was given a guided tour by Mr. Aikawa
+														himself. The place is small, but there are some
+														<span class="tooltip"
+															>nationally designated<span class="tooltiptext"
+																>国指定</span
+															></span
+														>
+														important
+														<span class="tooltip"
+															>cultural properties<span class="tooltiptext"
+																>文化財</span
+															></span
+														>. Stepping through the gate was like going back in
+														time.
+													</p>
+
+													<div class="numbertext">3 / 8</div>
+												</div>
+											</div>
+										</div>
+										<div class="mySlides1">
+											<div class="slide-content">
+												<div class="image-panel">
+													<img
+														src="/assets/Web/Aikawa/IMG_3723a.jpg"
+														class="slide-image"
+														alt="Tea House"
+													/>
+												</div>
+												<div class="caption-container">
+													<audio
+														controls
+														style="
+															width: 400px;
+															height: 40px;
+															border-radius: 8px;
+															padding: 5px;
+															position: relative;
+															left: 0px;
+														"
+													>
+														<source
+															src="assets/audio/audio3-2d.mp3"
+															type="audio/mpeg"
+														/>
+														Your browser does not support the audio element.</audio
+													><br /><br />
+													<p
+														style="
+															font-size: 2rem;
+															text-indent: 1rem;
+															line-height: 1.9;
+															margin-top: 0.5rem;
+															padding: 0rem;
+															text-align: justify;
+														"
+													>
+														The museum buildings are old and during the Edo
+														Period, it was the home of an
+														<span class="tooltip"
+															>official<span class="tooltiptext"
+																>役人</span
+															></span
+														>
+														of Isesaki. A beautiful old tea house
+														<span class="tooltip"
+															>hides<span class="tooltiptext">隠す</span></span
+														>
+														a shrine at the corner of the yard and a
+														<span class="tooltip"
+															>storehouse<span class="tooltiptext"
+																>倉庫</span
+															></span
+														>
+														holds the most important treasures of all.
+													</p>
+
+													<div class="numbertext">4 / 8</div>
+												</div>
+											</div>
+										</div>
+										<div class="mySlides1">
+											<div class="slide-content">
+												<div class="image-panel">
+													<img
+														src="/assets/Web/Aikawa/IMG_3735a.jpg"
+														class="slide-image"
+														alt="Storehouse"
+													/>
+												</div>
+												<div class="caption-container">
+													<audio
+														controls
+														style="
+															width: 400px;
+															height: 40px;
+															border-radius: 8px;
+															padding: 5px;
+															position: relative;
+															left: 0px;
+														"
+													>
+														<source
+															src="assets/audio/audio3-2e.mp3"
+															type="audio/mpeg"
+														/>
+														Your browser does not support the audio element.</audio
+													><br /><br />
+													<p
+														style="
+															font-size: 2rem;
+															text-indent: 1rem;
+															line-height: 1.9;
+															margin-top: 0.5rem;
+															padding: 0rem;
+															text-align: justify;
+														"
+													>
+														My guide unlocked the
+														<span class="tooltip"
+															>padlock<span class="tooltiptext"
+																>南京錠</span
+															></span
+														>
+														on the large grey door and invited me inside. Wow,
+														four impressive haniwa statues were there to greet
+														me and they had been here for over 1,300 years!
+													</p>
+													<div class="numbertext">5 / 8</div>
+												</div>
+											</div>
+										</div>
+										<div class="mySlides1">
+											<div class="slide-content">
+												<div class="image-panel">
+													<img
+														src="/assets/Web/Aikawa/IMG_3738a.jpg"
+														class="slide-image"
+														alt="Haniwa"
+													/>
+												</div>
+												<div class="caption-container">
+													<audio
+														controls
+														style="
+															width: 400px;
+															height: 40px;
+															border-radius: 8px;
+															padding: 5px;
+															position: relative;
+															left: 0px;
+														"
+													>
+														<source
+															src="assets/audio/audio3-2f.mp3"
+															type="audio/mpeg"
+														/>
+														Your browser does not support the audio element.</audio
+													><br /><br />
+													<p
+														style="
+															font-size: 2rem;
+															text-indent: 1rem;
+															line-height: 1.9;
+															margin-top: 0.5rem;
+															padding: 0rem;
+															text-align: justify;
+														"
+													>
+														A warrior stood in armour with a bow and sword and a
+														boy playing the biwa. Beside them, two men with a
+														nice hairstyle called sage-mizura. I learnt that
+														only people such as kings or
+														<span class="tooltip"
+															>high ranking officials<span class="tooltiptext"
+																>高官</span
+															></span
+														>
+														could
+														<span class="tooltip"
+															>let their hair down<span class="tooltiptext"
+																>髪を下ろす</span
+															></span
+														>
+														like this. It looks like
+														<span class="tooltip"
+															>pigtails<span class="tooltiptext"
+																>ツインテイル</span
+															></span
+														>
+														for men but, I do prefer it over the chon-mage
+														<span class="tooltip"
+															>to be honest<span class="tooltiptext"
+																>実を言うと</span
+															></span
+														>.
+													</p>
+
+													<div class="numbertext">6 / 8</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="mySlides1">
+											<div class="slide-content">
+												<div class="image-panel">
+													<img
+														src="/assets/Web/Aikawa/IMG_3732a.jpg"
+														class="slide-image"
+														style="object-position: center bottom"
+														alt="Artifacts"
+													/>
+												</div>
+												<div class="caption-container">
+													<audio
+														controls
+														style="
+															width: 400px;
+															height: 40px;
+															border-radius: 8px;
+															padding: 5px;
+															position: relative;
+															left: 0px;
+														"
+													>
+														<source
+															src="assets/audio/audio3-2g.mp3"
+															type="audio/mpeg"
+														/>
+														Your browser does not support the audio element.</audio
+													><br /><br />
+													<p
+														style="
+															font-size: 2rem;
+															text-indent: 1rem;
+															line-height: 1.9;
+															margin-top: 0.5rem;
+															padding: 0rem;
+															text-align: justify;
+														"
+													>
+														<span class="tooltip"
+															>Unfortunately<span class="tooltiptext"
+																>残念ながら</span
+															></span
+														>, no photos were
+														<span class="tooltip"
+															>allowed<span class="tooltiptext"
+																>許可される</span
+															></span
+														>
+														of the main haniwa so you’ll just have to visit and
+														<span class="tooltip"
+															>see them for yourself<span class="tooltiptext"
+																>自分の目で見る</span
+															></span
+														>. I’m glad I finally did.
+													</p>
+													<div class="numbertext">7 / 8</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="mySlides1">
+											<div class="slide-content">
+												<div class="image-panel">
+													<img
+														src="/assets/Web/Aikawa/chonmage vs sagemizuraAa.png"
+														class="slide-image"
+														alt="Chon-mage vs. Sage-mizura"
+													/>
+												</div>
+												<div
+													class="caption-container"
+													style="vertical-align: middle"
+												>
+													<audio
+														controls
+														style="
+															width: 400px;
+															height: 40px;
+															border-radius: 8px;
+															padding: 5px;
+															position: relative;
+															left: 0px;
+														"
+													>
+														<source
+															src="assets/audio/audio3-2h.mp3"
+															type="audio/mpeg"
+														/>
+														Your browser does not support the audio element.</audio
+													><br /><br />
+													<div class="caption-text">
+														<p
+															style="
+																font-size: 2rem;
+																line-height: 1.8;
+																text-align: center;
+																vertical-align: middle;
+															"
+														>
+															Answers: <br />
+														</p>
+														<ol
+															style="
+																font-size: 1.7rem;
+																line-height: 1.8;
+																text-align: left;
+																padding-left: 5%;
+															"
+														>
+															<li style="font-size: 1.2rem">
+																What did Ryan want to be in the 5th grade?
+																<br /><b style="font-size: 1.7rem"
+																	>He wanted to be an archaeologist.</b
+																>
+															</li>
+															<li style="font-size: 1.2rem">
+																Where did he go during summer vacation?
+																<br /><b style="font-size: 1.7rem"
+																	>He went to the Aikawa Archaeology Museum.</b
+																>
+															</li>
+															<li style="font-size: 1.2rem">
+																What kind of things are there?
+																<br /><b style="font-size: 1.7rem"
+																	>There are buildings from the Edo Period, a
+																	beautiful old tea house, a shrine, a
+																	storehouse with four impressive haniwa, and
+																	other cultural properties.</b
+																>
+															</li>
+															<li style="font-size: 1.2rem">
+																Does he like the <i>chon-mage</i> or
+																<i>sage-mizura</i> hairstyles?<br /><b
+																	style="font-size: 1.7rem"
+																	>He likes the <i>sage-mizura</i> hairstyle
+																	better than the <i>chon-mage</i> hairstyle.
+																</b>
+															</li>
+														</ol>
+													</div>
+													<div class="numbertext">8 / 8</div>
+												</div>
+											</div>
+										</div>
+
+										<!-- Navigation buttons -- Change for SlideShow1 or 2 -->
+										<a class="prev" onclick="plusSlides1(-1)">&#10094;</a>
+										<a class="next" onclick="plusSlides1(1)">&#10095;</a>
+
+										<br />
+									</div>
+								</div>
+
+								<!-- Modal footer -->
+								<div class="modal-footer">
+									<!-- Thumbnails -- Change for SlideShow1 or 2 -->
+									<div class="thumbnail-container">
+										<img
+											src="/assets/Web/Aikawa/chonmage vs sagemizuraAa.png"
+											alt="Chon-mage vs. Sage-mizura"
+											class="thumbnail1 thumbnail"
+											onclick="currentSlide1(1)"
+										/>
+										<img
+											src="/assets/Web/Aikawa/Ryan.jpg"
+											alt="Ryan"
+											class="thumbnail1 thumbnail"
+											onclick="currentSlide1(2)"
+										/>
+										<img
+											src="/assets/Web/Aikawa/IMG_3721a.jpg"
+											alt="Aikawa Archaeology Museum"
+											class="thumbnail1 thumbnail"
+											onclick="currentSlide1(3)"
+										/>
+										<img
+											src="/assets/Web/Aikawa/IMG_3723a.jpg"
+											alt="Tea House"
+											class="thumbnail1 thumbnail"
+											onclick="currentSlide1(4)"
+										/>
+										<img
+											src="/assets/Web/Aikawa/IMG_3735a.jpg"
+											alt="Storehouse"
+											class="thumbnail1 thumbnail"
+											onclick="currentSlide1(5)"
+										/>
+										<img
+											src="/assets/Web/Aikawa/IMG_3738a.jpg"
+											alt="Haniwa"
+											class="thumbnail1 thumbnail"
+											onclick="currentSlide1(6)"
+										/>
+										<img
+											src="/assets/Web/Aikawa/IMG_3732a.jpg"
+											alt="Artifacts"
+											class="thumbnail1 thumbnail"
+											onclick="currentSlide1(7)"
+										/>
+										<img
+											src="/assets/Web/Aikawa/chonmage vs sagemizuraAa.png"
+											alt="Chon-mage vs. Sage-mizura"
+											class="thumbnail1 thumbnail"
+											onclick="currentSlide1(8)"
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Audio -->
+
+						<audio id="audio1-2" class="playondemand">
+							<!-- empty audio, just used to open the modal -->
+							<source src="./assets/audio/audio3-2.mp3" type="audio/mp3" />
+						</audio>
+					</div>
+				</div>
+
+				<div class="item sidebar sidebar-right">
+					<!-- Buttons for Intro Text -->
+
+					<button
+						class="center-items right-nav-buttons clickable"
+						type="button"
+						onClick="PlayAndShowWithNav('audio1-2', 'text1-2', 'play1-2', 'prev-portrait', 'next-portrait')"
+					>
+						<img
+							id="play1-2"
+							class="audio-button-image clickable"
+							src="/assets/nav-images/play-g79150a13d_1280.png"
+						/>
+						<h6 style="margin: auto">Word Search</h6>
+					</button>
+					<button
+						class="center-items right-nav-buttons clickable"
+						type="button"
+						onClick="PlayAndShowWithNav('audio1-2', 'text1-2', 'play1-2', 'prev-portrait', 'next-portrait')"
+					>
+						<img
+							id="play1-2"
+							class="audio-button-image clickable"
+							src="/assets/nav-images/play-g79150a13d_1280.png"
+						/>
+						<h6 style="margin: auto">Article</h6>
+					</button>
+				</div>
+			</div>
+
+			<button id="prev-portrait" aria-label="Previous Slide">&lt;</button>
+			<button id="next-portrait" aria-label="Next Slide">&gt;</button>
+		</main>
+
+		<canvas id="snowfall"></canvas>
+
+		<script src="/assets/scripts/scripts-snow.js" defer></script>
+		<script src="/assets/scripts/scripts-magazine-nav.js" defer></script>
+		<script
+			type="text/javascript"
+			src="/assets/scripts/scripts-slideshow-double.js"
+		></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+		<script
+			type="text/javascript"
+			src="/assets/scripts/scripts-audio-player.js"
+		></script>
+	</body>
+</html>

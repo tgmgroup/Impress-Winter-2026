@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<!-- <meta
+			name="viewport"
+			content="width=1920, height=1080, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>-->
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Impress Magazine - Winter, 2026</title>
+		<link rel="stylesheet" href="/assets/css/styles.css" />
+		<link rel="icon" type="image/x-icon" href="/assets/nav-images/logo.png" />
+		<link id="favicon" rel="shortcut icon" href="/assets/nav-images/logo.png" />
+
+		<link href="/assets/css/styles-tooltip.css" rel="stylesheet" />
+		<link href="/assets/css/styles-modal.css" rel="stylesheet" />
+		<link href="/assets/css/styles-audio-player.css" rel="stylesheet" />
+		
+
+		<!-- Unused stylesheets for now -->
+		<!-- 
+		<link href="styles-slideshow.css" rel="stylesheet" />
+		<link href="styles-slideshow-double.css" rel="stylesheet" />
+		
+		<link href="styles-modal-split.css" rel="stylesheet" /> 
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+		-->
+
+		<script type="text/javascript" src="/assets/scripts/scripts.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
+
+		<script>
+			(function () {
+				try {
+					const savedTheme = localStorage.getItem("theme");
+					const prefersDark = window.matchMedia(
+						"(prefers-color-scheme: dark)"
+					).matches;
+					if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+						document.documentElement.classList.add("dark");
+					} else if (savedTheme === "light") {
+						document.documentElement.classList.remove("dark");
+					} else {
+						// Default to dark if nothing set and system isn't dark
+						document.documentElement.classList.add("dark");
+					}
+				} catch (e) {
+					console.error("Error applying initial theme class:", e);
+				}
+			})();
+		</script>
+	</head>
+	<body>
+		<nav id="icon-nav">
+			<a
+				href="https://impress.isesaki.in"
+				aria-label="Impress Magazine Gallery"
+				class="slide-nav-trigger"
+				data-target-slide="slide-alpha"
+				>&#128213;</a
+			>
+			<a
+				href="index.html"
+				aria-label="Front Cover"
+				class="slide-nav-trigger"
+				data-target-slide="slide-beta"
+				>&#x23EA;</a
+			>
+			<a href="1.html" aria-label="1">&#x0031;</a>
+			<a href="1.html" aria-label="2">&#x0032;</a>
+			<a href="3.html" aria-label="3">&#x0033;</a>
+			<a href="3.html" aria-label="4">&#x0034;</a>
+			<a href="5.html" aria-label="5">&#x0035;</a>
+			<a href="5.html" aria-label="6">&#x0036;</a>
+			<a href="cover.html" aria-label="Back Cover">&#x23E9;</a>
+			<a href="about.html" aria-label="About">&#128209;</a>
+			<button id="theme-toggle" aria-label="Switch theme"></button>
+
+			<button id="snow-toggle" aria-label="Toggle Snowflakes">&#x2744;</button>
+		</nav>
+
+		<main id="hero">
+			<div id="container">
+				<!-- Your website content goes here -->
+
+				<div class="item sidebar sidebar-left"></div>
+
+				<div class="item gap-left"></div>
+
+				<div
+					class="item content-center"
+					id="page-content"
+					style="
+						background-image: url('/assets/Web/page00.jpg');
+						background-size: contain;
+						background-position: center;
+						background-repeat: no-repeat;
+					"
+					data-page-number="0"
+					data-prev-page="about.html"
+					data-next-page="1.html"
+					data-landscape-bg="/assets/Web/page00.jpg"
+				>
+					<div class="left-content">
+						<div class="items hidden-text" id="text1-1">
+							<!-- Modal content -->
+							<div class="modal-content">
+								<div class="text-container">
+									<div class="modal-header">
+										<span
+											class="close clickable"
+											onClick="ResetPlayAndShowWithNav('audio1-1', 'text1-1', 'play1-1', 'prev-portrait', 'next-portrait'), ResetPlayAndShowWithNav('audio1-1a', 'text1-1', 'play1-1a', 'prev-portrait', 'next-portrait')"
+											>&times;</span
+										>
+										<span
+											class="modal-play-left clickable"
+											onClick="PlaySoundWithControls('audio1-1a', 'play1-1a')"
+										></span>
+									</div>
+
+									<div class="modal-body">
+										<h1>Introduction</h1>
+										<p
+											style="
+												font-size: 2rem;
+												text-align: left;
+												text-indent: 1rem;
+												margin: 2rem;
+												padding: 1vh;
+												text-align: justify;
+											"
+										>
+											<span class="tooltip"
+												>In the United States, there’s a strong focus on
+												self-discovery<span class="tooltiptext"
+													>アメリカでは、自己発見、つまり自分が何者なのかを理解し、</span
+												></span
+											> — 
+											<span class="tooltip"
+												>on figuring out who we are and chasing
+												our biggest dreams.<span class="tooltiptext"
+													>最大の夢を追いかけることに大きな重点が置かれています。</span
+												></span
+											>
+											<span class="tooltip"
+												>We’re often encouraged to find that perfect job or
+												build the ideal future.<span class="tooltiptext"
+													>私たちはしばしば、完璧な仕事を見つけたり、理想的な未来を築いたりするよう奨励されます。</span
+												></span
+											>
+
+											<span class="tooltip"
+												>It’s all part of what we call the American Dream.<span
+													class="tooltiptext"
+													>これらは全て、いわゆるアメリカンドリームの一部です。</span
+												></span
+											>
+										</p>
+
+										<p
+											style="
+												font-size: 2rem;
+												text-align: left;
+												text-indent: 1rem;
+												margin: 2rem;
+												padding: 1vh;
+												text-align: justify;
+											"
+										>
+											<span class="tooltip"
+												>But life isn’t always that simple.<span
+													class="tooltiptext"
+													>しかし、人生は必ずしもそれほど単純ではありません。</span
+												></span
+											>
+
+											<span class="tooltip"
+												>Maybe we have a dream, and maybe we have some idea of
+												who we are right now.<span class="tooltiptext"
+													>夢を持っているかもしれませんし、今の自分が何者なのかをある程度理解しているかもしれません。</span
+												></span
+											>
+
+											<span class="tooltip"
+												>But a year from now?<span class="tooltiptext"
+													>しかし、1年後はどうでしょうか？</span
+												></span
+											>
+
+											<span class="tooltip"
+												>Our dreams might change.<span class="tooltiptext"
+													>夢は変わっているかもしれません。</span
+												></span
+											>
+
+											<span class="tooltip"
+												>We might discover something new about ourselves.<span
+													class="tooltiptext"
+													>自分自身について何か新しい発見をするかもしれません。</span
+												></span
+											>
+										</p>
+
+										<p
+											style="
+												font-size: 2rem;
+												text-align: left;
+												text-indent: 1rem;
+												margin: 2rem;
+												padding: 1vh;
+												text-align: justify;
+											"
+										>
+											<span class="tooltip"
+												>And that’s OK, because life isn’t just one big
+												picture.<span class="tooltiptext"
+													>それでいいのです。なぜなら、人生はただ一つの大きな絵ではないからです。</span
+												></span
+											>
+
+											<span class="tooltip"
+												>Life is a puzzle, made up of many different
+												pieces.<span class="tooltiptext"
+													>人生はパズルであり、様々なピースでできています。</span
+												></span
+											>
+
+											<span class="tooltip"
+												>As we grow, learn, and experience more, we collect new
+												pieces, and the picture begins to change.<span
+													class="tooltiptext"
+													>成長し、学び、経験を積むにつれて、新しいピースが集まり、絵は変化し始めます。</span
+												></span
+											>
+
+											<span class="tooltip"
+												>At twelve, your puzzle might look like an Olympic track
+												star.<span class="tooltiptext"
+													>12歳の時には、あなたのパズルはオリンピックの陸上競技選手のように見えるかもしれません。</span
+												></span
+											>
+
+											<span class="tooltip"
+												>At twenty, it could appear to be a math teacher.<span
+													class="tooltiptext"
+													>20歳には、数学の先生のように見えるかもしれません。</span
+												></span
+											>
+
+											<span class="tooltip"
+												>And at fifty, maybe it starts to seem like a CEO.<span
+													class="tooltiptext"
+													>そして50歳には、CEOのように見えるかもしれません。</span
+												></span
+											>
+										</p>
+
+										<p
+											style="
+												font-size: 2rem;
+												text-align: left;
+												text-indent: 1rem;
+												margin: 2rem;
+												padding: 1vh;
+												text-align: justify;
+											"
+										>
+											<span class="tooltip"
+												>So don’t worry too much about what the final picture
+												will be.<span class="tooltiptext"
+													>ですから、最終的な絵がどうなるかをあまり心配する必要はありません。</span
+												></span
+											>
+
+											<span class="tooltip"
+												>Instead, focus on getting as many pieces as you
+												can.<span class="tooltiptext"
+													>むしろ、できるだけ多くのピースを集めることに集中しましょう。</span
+												></span
+											>
+
+											<span class="tooltip"
+												>If you do, your dream — even if it’s not the one you
+												started with — will start to take shape, and it just
+												might come true.<span class="tooltiptext"
+													>そうすれば、たとえそれが最初に思い描いていた夢でなくても、あなたの夢は形になり始め、実現するかもしれません。</span
+												></span
+											>
+										</p>
+
+										<p
+											style="
+												font-size: 2rem;
+												text-align: left;
+												text-indent: 1rem;
+												margin: 2rem;
+												padding: 1vh;
+												text-align: right;
+											"
+										>
+											-- George
+										</p>
+									</div>
+
+									<div class="modal-footer">
+										<div class="audio-player">
+											<button class="audio-button" id="playPauseBtn">▶️</button>
+											<audio
+												id="playAudio"
+												src="assets/audio/audio0-1.mp3"
+												type="audio/mp3"
+											></audio>
+											<canvas id="waveform" class="waveform-canvas"></canvas>
+											<div class="time">
+												<span id="currentTime">0:00</span>
+												<span id="duration">0:00</span>
+											</div>
+											<div class="controls">
+												<label>🔊</label>
+												<input
+													type="range"
+													id="volume"
+													min="0"
+													max="1"
+													step="0.05"
+													value="1"
+												/>
+												<label>⏩</label>
+												<input
+													type="range"
+													id="speed"
+													min="0.5"
+													max="2"
+													step="0.05"
+													value="1"
+												/>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Audio for Intro Text -->
+
+						<audio id="audio1-1" class="playondemand">
+							<!-- empty audio, just used to open the modal -->
+							<source src="./assets/audio/audio0-0.mp3" type="audio/mp3" />
+						</audio>
+
+						<audio
+							id="audio1-1a"
+							class="playondemand"
+							controls
+							style="display: none"
+						>
+							<source src="./assets/audio/audio0-1.mp3" type="audio/mpeg" />
+							Your browser does not support the audio element.
+						</audio>
+					</div>
+				</div>
+
+				<div class="item sidebar sidebar-right">
+					<!-- Buttons for Intro Text -->
+					<button
+						class="center-items right-nav-buttons clickable"
+						type="button"
+						onClick="PlayAndShowWithNav('audio1-1', 'text1-1', 'play1-1', 'prev-portrait', 'next-portrait')"
+					>
+						<img
+							id="play1-1"
+							class="audio-button-image clickable"
+							src="/assets/nav-images/play-g79150a13d_1280.png"
+						/>
+						<h6 style="margin: auto">Introduction</h6>
+					</button>
+
+					<form
+						action="https://in.isesaki.in/impress-winter-2026"
+						method="get"
+						target="_blank"
+					>
+						<button
+							class="center-items right-nav-buttons clickable"
+							type="submit"
+						>
+							<img
+								id="play1-2"
+								class="audio-button-image clickable"
+								src="/assets/nav-images/link.png"
+							/>
+							<h6 style="margin: auto">Materials for This Issue</h6>
+						</button>
+					</form>
+
+					<form
+						action="https://sites.google.com/isesaki-school.ed.jp/impress/contact"
+						method="get"
+						target="_blank"
+					>
+						<button
+							class="center-items right-nav-buttons clickable"
+							type="submit"
+						>
+							<img
+								id="play1-3"
+								class="audio-button-image clickable"
+								src="/assets/nav-images/link.png"
+							/>
+							<h6 style="margin: auto">Contact Us</h6>
+						</button>
+					</form>
+				</div>
+			</div>
+
+			<button id="prev-portrait" aria-label="Previous Slide">&lt;</button>
+			<button id="next-portrait" aria-label="Next Slide">&gt;</button>
+		</main>
+
+		<canvas id="snowfall"></canvas>
+
+		<script src="/assets/scripts/scripts-snow.js" defer></script>
+		<script src="/assets/scripts/scripts-magazine-nav.js"></script>
+
+		<script
+			type="text/javascript"
+			src="/assets/scripts/scripts-audio-player.js"
+		></script>
+	</body>
+</html>
