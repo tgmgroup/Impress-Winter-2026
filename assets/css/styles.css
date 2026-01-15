@@ -44,12 +44,13 @@
 :root {
 	/* Light Mode Colors */
 	--bg-color: #f8f8f8;
-	--bg-color-divs: #b8b8b8;
+	--bg-color-divs: #303030ae;
 	--bg-color-text-divs: #f8f8f8d8;
 	--box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.015),
 		0 6px 20px 0 rgba(0, 0, 0, 0.015);
 	--text-color: #333333; /* Dark text for light mode */
 	--nav-bg: #e0e0e0;
+	--nav-button-background-color: rgba(255, 255, 255, 0.845);
 	--nav-bg-image: linear-gradient(203deg, #bcc0fe 0%, #010457 90%);
 	--nav-icon-color: #1a1201;
 	--link-text: #171418;
@@ -91,6 +92,7 @@ html.dark {
 		0 6px 20px 0 rgba(255, 255, 255, 0.015);
 	--text-color: #e0e0e0; /* Light text for dark mode */
 	--nav-bg: #2c2c2c;
+	--nav-button-background-color: rgba(255, 255, 255, 0.308);
 	--nav-bg-image: linear-gradient(203deg, #0d0600 0%, #181568 90%);
 	--nav-icon-color: #edebd3;
 	--link-text: #f6dbff;
@@ -871,7 +873,7 @@ a.button {
 	height: 5vw;
 	width: 10vw;
 	justify-content: flex-start; /* Correct value */
-	background-color: rgba(255, 255, 255, 0.308);
+	background-color: var(--nav-button-background-color);
 	box-shadow: var(--box-shadow);
 	/* Assumes display: flex/grid is set on parent or here */
 }

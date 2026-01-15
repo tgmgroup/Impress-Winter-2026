@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Scam Town — Phone Challenge</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<style>
+			body {
+				margin: 0;
+				background: #020617;
+				font-family: system-ui, sans-serif;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 100vh;
+				color: white;
+			}
+
+			/* ===== MODAL ===== */
+			#modal {
+				background: rgba(0, 0, 0, 0.7);
+				position: fixed;
+				inset: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			#phone {
+				width: 360px;
+				height: 640px;
+				background: #020617;
+				border-radius: 28px;
+				box-shadow: 0 20px 70px rgba(0, 0, 0, 0.7);
+				overflow: hidden;
+			}
+
+			/* ===== STATUS BAR ===== */
+			#status {
+				display: flex;
+				justify-content: space-between;
+				font-size: 0.75rem;
+				padding: 0.4rem 0.6rem;
+				background: #020617;
+			}
+
+			#icons span {
+				margin-left: 0.3rem;
+			}
+
+			/* ===== SCREENS ===== */
+			.screen {
+				display: none;
+				height: calc(100% - 24px);
+				padding: 1rem;
+			}
+			.screen.active {
+				display: flex;
+				flex-direction: column;
+			}
+
+			.lock {
+				justify-content: space-between;
+			}
+
+			.time {
+				font-size: 3rem;
+				text-align: center;
+				margin-top: 1rem;
+			}
+
+			/* ===== WIDGETS ===== */
+			.widget {
+				background: #0f172a;
+				border-radius: 14px;
+				padding: 0.6rem;
+				margin-bottom: 0.5rem;
+				font-size: 0.85rem;
+			}
+
+			/* ===== WEATHER ===== */
+			#weather {
+				text-align: center;
+			}
+
+			/* ===== NOTIFICATIONS ===== */
+			.notification {
+				background: #1e293b;
+				border-radius: 16px;
+				padding: 0.8rem;
+				margin-bottom: 0.6rem;
+				display: flex;
+				gap: 0.6rem;
+				cursor: pointer;
+			}
+			.icon {
+				font-size: 1.8rem;
+			}
+			.notif-title {
+				font-weight: bold;
+			}
+
+			/* ===== MESSAGE ===== */
+			.message-box {
+				background: #1e293b;
+				border-radius: 16px;
+				padding: 1rem;
+				margin-top: 2rem;
+			}
+
+			.buttons button {
+				width: 100%;
+				margin-top: 0.5rem;
+				padding: 0.6rem;
+				border-radius: 12px;
+				border: none;
+				font-size: 1rem;
+			}
+
+			.danger {
+				background: #dc2626;
+				color: white;
+			}
+			.safe {
+				background: #16a34a;
+				color: white;
+			}
+
+			.bad {
+				background: #7f1d1d;
+			}
+			.good {
+				background: #064e3b;
+			}
+
+			.small {
+				font-size: 0.8rem;
+				opacity: 0.75;
+			}
+
+			/* ===== TOGGLE ===== */
+			#langToggle {
+				background: #334155;
+				border: none;
+				color: white;
+				padding: 0.3rem 0.6rem;
+				border-radius: 10px;
+				font-size: 0.75rem;
+				cursor: pointer;
+			}
+
+			.hidden {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="modal">
+			<div id="phone">
+				<!-- STATUS BAR -->
+				<div id="status">
+					<div id="carrier">📶 LTE</div>
+					<div id="icons">
+						<span>📡</span>
+						<span id="battery">🔋 100%</span>
+					</div>
+				</div>
+
+				<!-- LOCK SCREEN -->
+				<div class="screen lock active" id="lock">
+					<button id="langToggle">日本語</button>
+					<div class="time" id="clock">--:--</div>
+
+					<div class="widget" id="weather">🌤️ Loading weather…</div>
+
+					<div class="widget">
+						<div id="nowPlaying" class="now-playing hidden">
+							▶️ <span id="nowPlayingLabel"></span>
+							<span id="trackTitle"></span>
+						</div>
+						<iframe
+							width="100%"
+							height="90"
+							src="https://www.youtube.com/embed/videoseries?list=PLdkj6XH8GYPSs9OiibXJHj5sNy8prTPJh&autoplay=1&mute=1"
+							frameborder="0"
+							allow="autoplay"
+						></iframe>
+					</div>
+
+					<div id="notifications"></div>
+					<div class="small" style="text-align: center">Tap a notification</div>
+				</div>
+
+				<div class="screen" id="message"></div>
+				<div class="screen" id="result"></div>
+			</div>
+		</div>
+
+		<audio
+			id="notifSound"
+			src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"
+		></audio>
+
+		<script>
+			/* ===== UTIL ===== */
+			const vibrate = () =>
+				navigator.vibrate && navigator.vibrate([100, 50, 100]);
+			const beep = () => document.getElementById("notifSound").play();
+
+			/* ===== CLOCK ===== */
+			setInterval(() => {
+				const d = new Date();
+				clock.textContent = `${String(d.getHours()).padStart(2, "0")}:${String(
+					d.getMinutes()
+				).padStart(2, "0")}`;
+			}, 1000);
+
+			/* ===== BATTERY ===== */
+			let battery = 100;
+			setInterval(() => {
+				battery = Math.max(5, battery - 0.1);
+				document.getElementById("battery").textContent = `🔋 ${battery | 0}%`;
+			}, 5000);
+
+			/* ===== WEATHER ===== */
+			let currentWeather = null;
+			navigator.geolocation?.getCurrentPosition(
+				(p) => {
+					fetch(
+						`https://api.open-meteo.com/v1/forecast?latitude=${p.coords.latitude}&longitude=${p.coords.longitude}&current=temperature_2m,windspeed_10m,precipitation,rain,showers,snowfall,weather_code&timezone=auto`
+					)
+						.then((r) => r.json())
+						.then((d) => {
+							currentWeather = d.current;
+							renderWeather();
+						})
+						.catch(() => {
+							weather.textContent = "🌍 Weather unavailable";
+						});
+				},
+				() => (weather.textContent = "🌍 Location denied")
+			);
+
+			function renderWeather() {
+				if (!currentWeather) return;
+
+				const w = currentWeather;
+
+				let conditionEN = "Clear";
+				let conditionJA = "晴れ";
+				let icon = "☀️";
+
+				if (w.snowfall > 0) {
+					icon = "❄️";
+					conditionEN = "Snow";
+					conditionJA = "雪";
+				} else if (w.showers > 0) {
+					icon = "🌦️";
+					conditionEN = "Showers";
+					conditionJA = "にわか雨";
+				} else if (w.rain > 0) {
+					icon = "🌧️";
+					conditionEN = "Rain";
+					conditionJA = "雨";
+				} else if ([95, 96, 99].includes(w.weather_code)) {
+					icon = "⛈️";
+					conditionEN = "Storm";
+					conditionJA = "雷雨";
+				}
+
+				weather.textContent =
+					`🌡️ ${w.temperature_2m}°C  ` +
+					`💨 ${w.windspeed_10m}km/h  ` +
+					`${icon} ${t(conditionEN, conditionJA)}`;
+			}
+
+			/* ===== YOUTUBE PLAYLIST ===== */
+			function renderNowPlaying() {
+				nowPlaying.classList.remove("hidden");
+				nowPlayingLabel.textContent = t("Now Playing:", "再生中：");
+				trackTitle.textContent = t("", "");
+			}
+
+			/* ===== LANGUAGE ===== */
+			let lang = "en";
+			const toggle = document.getElementById("langToggle");
+
+			const t = (en, ja) => (lang === "en" ? en : ja);
+
+			toggle.onclick = () => {
+				lang = lang === "en" ? "ja" : "en";
+				toggle.textContent = lang === "en" ? "日本語" : "English";
+				loadNotifications();
+				renderWeather();
+				renderNowPlaying();
+			};
+
+			/* ===== GAME ===== */
+			let stats = { total: 0, fail: 0, safe: 0 },
+				current = null,
+				queue = [];
+			let scamPool = [
+				/* ===== DELIVERY / SMS ===== */
+				{
+					icon: "📦",
+					title: () => t("SMS: Delivery", "SMS：配達"),
+					text: () =>
+						t(
+							"Package could not be delivered.",
+							"お荷物をお届けできませんでした"
+						),
+					detail: () =>
+						t(
+							"Send us your address and phone number: http://bit.ly/wf8dor2h",
+							"住所と電話番号を確認してください： http://bit.ly/wf8dor2h"
+						),
+					action: () => t("Confirm", "確認する"),
+					result: () =>
+						t(
+							"Address and phone stolen. Don't click on shortlinks from people you don't know!",
+							"住所と電話番号が盗まれました。見知らぬ人からの短縮リンクはクリックしないでください！"
+						),
+					scam: true,
+				},
+				{
+					icon: "📮",
+					title: () => t("JP Post", "日本郵便"),
+					text: () => t("Delivery rescheduled.", "再配達のお知らせ"),
+					detail: () =>
+						t(
+							"Click the link to arrange delivery: https://japanpost.jp.info/redeliver",
+							"再配達はこちら： https://japanpost.jp.info/redeliver"
+						),
+					action: () => t("Open link", "リンクを開く"),
+					result: () =>
+						t(
+							"Login info stolen. Check the URL! Sometimes links look safe but go to fake sites.",
+							"ログイン情報が盗まれました。URLを確認してください！ 時々リンクは安全に見えますが、偽のサイトに移動します。"
+						),
+					scam: true,
+				},
+
+				/* ===== AMAZON / SHOPPING ===== */
+				{
+					icon: "🛒",
+					title: () => t("Amazon", "Amazon"),
+					text: () =>
+						t("Unusual login detected.", "不審なログインを検出しました"),
+					detail: () =>
+						t("Verify your account: https://amzon.jp/acount", "アカウント確認"),
+					action: () => t("Verify", "確認する： https://amzon.jp/acount"),
+					result: () =>
+						t(
+							"Amazon credentials leaked. Check the URL! Many fake sites have misspelled URLs.",
+							"Amazonの認証情報が流出しました。URLを確認してください！ 多くの偽のサイトはスペルミスのURLを持っています。"
+						),
+					scam: true,
+				},
+				{
+					icon: "🎁",
+					title: () => t("Rakuten", "楽天"),
+					text: () =>
+						t(
+							"Your points will expire today.",
+							"ポイントの有効期限が本日までです"
+						),
+					detail: () =>
+						t(
+							"Use points now: https://rakuten.co.jp/points/redir.php?url=https://127.0.0.1",
+							"今すぐ使う： https://rakuten.co.jp/points/redir.php?url=https://127.0.0.1"
+						),
+					action: () => t("Open", "開く"),
+					result: () =>
+						t(
+							"Account compromised. Sometimes scam URLs look like real URLs or go to real sites but then go to the scam site. Don't click on the link. Open your browser and enter the link in yourself.",
+							"アカウントが乗っ取られました。時々詐欺のURLは本物のサイトのように見えたり、本物のサイトに移動したりしますが、その後詐欺サイトに移動します。 リンクをクリックしないでください。 ブラウザを開き、リンクを自分で入力してください。"
+						),
+					scam: true,
+				},
+
+				/* ===== LINE / SOCIAL ===== */
+				{
+					icon: "💬",
+					title: () => t("LINE: Tomo", "LINE：とも"),
+					text: () => t("Is this you in this photo?", "この写真あなた？"),
+					detail: () => t("Send confirmation photo.", "確認用の写真送って"),
+					action: () => t("Send photo", "写真を送る"),
+					result: () =>
+						t(
+							"Private photos leaked. Make sure it's really your friend you're talking to.",
+							"写真が流出しました。本当に友達と話していることを確認してください。"
+						),
+					scam: true,
+				},
+				{
+					icon: "👤",
+					title: () => t("LINE: New contact", "LINE：新しい連絡先"),
+					text: () => t("Nice to meet you 😊", "はじめまして😊"),
+					detail: () => t("Can I see your face?", "顔写真送ってもいい？"),
+					action: () => t("Send photo", "写真を送る"),
+					result: () =>
+						t(
+							"Image used for impersonation. Don't sent pictures to people you don't know!",
+							"なりすましに使われました。見知らぬ人に写真を送らないでください！"
+						),
+					scam: true,
+				},
+				{
+					icon: "💬",
+					title: () => t("LINE: Tomoha", "LINE：ともは"),
+					text: () => t("Send me your photo!", "写真送って！"),
+					detail: () =>
+						t(
+							"Send me the picture of you at the beach! I want to see it.",
+							"ビーチでの写真を送って！ 見たいな。"
+						),
+					action: () => t("Send photo", "写真を送る"),
+					result: () =>
+						t(
+							"Private photos leaked. Sometimes friends share your photos with other people. Don't send anything you can't show your mother!",
+							"写真が流出しました。 時々友達はあなたの写真を他の人と共有します。 お母さんに見せられないものは送らないでください！"
+						),
+					scam: true,
+				},
+
+				/* ===== MONEY / GIFT CARD ===== */
+				{
+					icon: "🎁",
+					title: () => t("It's me!", "俺だよ！"),
+					text: () => t("I need help ASAP!", "今すぐ助けて！"),
+					detail: () => t("Buy gift cards for me.", "ギフトカードを買って"),
+					action: () => t("Buy cards", "購入する"),
+					result: () =>
+						t(
+							"Money lost. Don't buy gift cards if it's not for a gift.",
+							"お金を失いました。ギフト以外でギフトカードを購入しないでください。"
+						),
+					scam: true,
+				},
+				{
+					icon: "💴",
+					title: () => t("Part-time job", "アルバイト"),
+					text: () => t("Easy work, high pay.", "簡単作業・高収入"),
+					detail: () => t("Pay registration fee.", "登録料が必要です"),
+					action: () => t("Pay", "支払う"),
+					result: () =>
+						t(
+							"Fee stolen. Be careful about jobs promising easy work and high pay. They might also be illegal jobs!",
+							"お金をだまし取られました。簡単な仕事と高収入を約束する仕事には注意してください。 違法な仕事である可能性もあります！"
+						),
+					scam: true,
+				},
+
+				/* ===== MY NUMBER / GOVERNMENT ===== */
+				{
+					icon: "🪪",
+					title: () => t("My Number", "マイナンバーカード"),
+					text: () =>
+						t(
+							"Your registration has an issue: https://my.number.info/error",
+							"登録情報に問題があります： https://my.number.info/error"
+						),
+					detail: () => t("Submit details now.", "情報を入力してください"),
+					action: () => t("Submit", "送信"),
+					result: () =>
+						t(
+							"Personal ID stolen. Don't click on links for very private information! Open the official app or website by yourself.",
+							"個人番号が盗まれました。非常に個人的な情報のリンクをクリックしないでください！ 公式アプリやウェブサイトを自分で開いてください。"
+						),
+					scam: true,
+				},
+				{
+					icon: "🏛️",
+					title: () => t("Government", "行政"),
+					text: () =>
+						t(
+							"You qualify for a refund. https://government.jp/23ofdsi3",
+							"給付金の対象です： https://government.jp/23ofdsi3"
+						),
+					detail: () => t("Enter bank info.", "口座情報を入力"),
+					action: () => t("Enter info", "入力する"),
+					result: () =>
+						t(
+							"Bank account drained. Always open official apps or websites. And be careful about messages promising money!",
+							"口座から引き落とされました。公式アプリやウェブサイトを必ず開いてください。そして、お金を約束するメッセージに注意してください！"
+						),
+					scam: true,
+				},
+
+				/* ===== PAYMENTS / MOBILE ===== */
+				{
+					icon: "📱",
+					title: () => t("PayPay", "PayPay"),
+					text: () =>
+						t(
+							"Suspicious activity detected: https://payapay.jp/account",
+							"不正利用の可能性： https://payapay.jp/account"
+						),
+					detail: () => t("Confirm identity.", "本人確認"),
+					action: () => t("Confirm", "確認"),
+					result: () =>
+						t(
+							"Wallet compromised. Open official websites or apps by yourself if you're worried about your money.",
+							"ウォレットが不正利用されました。お金が心配な場合は、公式のウェブサイトやアプリを自分で開いてください。"
+						),
+					scam: true,
+				},
+				{
+					icon: "📶",
+					title: () => t("AU Support", "AUサポート"),
+					text: () => t("Your service will stop.", "サービス停止予定"),
+					detail: () =>
+						t(
+							"Send payment now: https://au.au.au/send",
+							"今すぐ支払う： https://au.au.au/send"
+						),
+					action: () => t("Send money", "送金する"),
+					result: () =>
+						t(
+							"Money lost. Never send money to a link!",
+							"お金を失いました。リンクにお金を送らないでください！"
+						),
+					scam: true,
+				},
+
+				/* ===== EMAIL / HARD MODE ===== */
+				{
+					icon: "📧",
+					title: () => t("Security Team", "セキュリティ"),
+					text: () =>
+						t(
+							"Password reset requested: https://officiallink.com/reset",
+							"パスワード変更要求： https://officiallink.com/reset"
+						),
+					detail: () => t("Ignore if not you.", "心当たりがなければ対応"),
+					action: () => t("Reset password", "変更する"),
+					result: () =>
+						t(
+							"Account hijacked. Make sure you check and trust the link you click on!",
+							"アカウントが乗っ取られました。クリックするリンクを確認して信頼していることを確認してください！"
+						),
+					scam: true,
+				},
+				{
+					icon: "🧠",
+					title: () => t("Classmate", "クラスメイト"),
+					text: () => t("Teacher needs this urgently.", "先生が今すぐ必要"),
+					detail: () => t("Send student list.", "名簿送って"),
+					action: () => t("Send", "送信"),
+					result: () =>
+						t(
+							"Data leak occurred. Did you check that it was really your classmate?",
+							"情報漏えいが発生しました。本当にクラスメイトであることを確認しましたか？"
+						),
+					scam: true,
+				},
+
+				/* ===== SAFE / NON-SCAM (for balance) ===== */
+				{
+					icon: "🏦",
+					title: () => t("Bank App", "銀行アプリ"),
+					text: () => t("Monthly statement ready.", "利用明細が届きました"),
+					detail: () =>
+						t("Open your official bank app.", "公式の銀行アプリを開く"),
+					action: () => t("Open app", "アプリを開く"),
+					result: () =>
+						t(
+							"Safe. Apps already on your smartphone are usually safe.",
+							"今回は安全でした。 スマホに入っているアプリは通常安全です。"
+						),
+					scam: false,
+				},
+				{
+					icon: "📚",
+					title: () => t("School", "学校"),
+					text: () => t("Tomorrow's schedule update.", "明日の予定変更"),
+					detail: () => t("Open email to see the notice.", "メールで確認"),
+					action: () => t("View", "見る"),
+					result: () =>
+						t(
+							"Safe. If you trust the sender, it's usually safe. And it's usually OK to view a message. Just don't click any links you don't trust.",
+							"今回は安全でした。送信先を信頼している場合、通常は安全です。メッセージを表示するのは通常問題ありません。信頼できないリンクはクリックしないでください。"
+						),
+					scam: false,
+				},
+			].sort(() => Math.random() - 0.5);
+
+			/* ===== QUEUE ===== */
+			function refill() {
+				while (queue.length < 3 && scamPool.length)
+					queue.push(scamPool.shift());
+				if (queue.length === 0) {
+					beep();
+					vibrate();
+				}
+			}
+			function loadNotifications() {
+				refill();
+				notifications.innerHTML = "";
+				queue.forEach((n) => {
+					const d = document.createElement("div");
+					d.className = "notification";
+					d.innerHTML = `<div class="icon" style="align: center; align-items: center;
+				justify-content: center;">${
+					n.icon
+				}</div><div><div class="notif-title">${n.title()}</div><div>${n.text()}</div></div>`;
+					d.onclick = () => openMsg(n);
+					notifications.appendChild(d);
+				});
+			}
+
+			/* ===== FLOW ===== */
+			function openMsg(n) {
+				current = n;
+				stats.total++;
+				show("message");
+				message.innerHTML = `
+ <div class="message-box">
+  <h3>${n.icon} ${n.title()}</h3>
+  <p>${n.text()}</p>
+  <p class="small">${n.detail()}</p>
+  <div class="buttons">
+    <button class="danger" onclick="decide(true)">
+  ${n.action()}
+</button>
+<button class="safe" onclick="decide(false)">
+  ${t("Ignore", "無視する")}
+</button>
+  </div>
+ </div>`;
+			}
+
+			function fail() {
+				stats.fail++;
+				show("result");
+				result.innerHTML = `<div class="message-box bad"><h3>❌</h3><p>${current.result()}</p><button onclick="next()" class="danger">OK</button></div>`;
+			}
+			/*function safe() {
+				stats.safe++;
+				show("result");
+				result.innerHTML = `<div class="message-box good"><h3>✅</h3><p>${t(
+					"You avoided the scam! You stayed safe.",
+					"詐欺を回避しました！ 安全でした。"
+				)}</p><p>${current.result()}</p><button onclick="next()" class="safe">OK</button></div>`;
+			}*/
+
+			function safe(messageText = null) {
+				stats.safe++;
+				show("result");
+				result.innerHTML = `
+    <div class="message-box good">
+      <h3>✅</h3>
+      <p>${
+				messageText ?? t("You made a safe choice.", "安全な選択でした。")
+			}</p>
+      <p>${current.result()}</p>
+      <button onclick="next()" class="safe">OK</button>
+    </div>
+  `;
+			}
+
+			function endGame() {
+				show("result");
+				result.innerHTML = `
+    <div class="message-box good">
+      <h3>🎉 ${t("Good job!", "よくできました！")}</h3>
+      <p>${t(
+				"You made it through all the messages.",
+				"すべてのメッセージを確認しました"
+			)}</p>
+
+      <hr style="opacity:.3">
+
+      <p>📬 ${t("Messages opened", "確認したメッセージ")}: ${stats.total}</p>
+      <p>❌ ${t("Fell for scams", "だまされた回数")}: ${stats.fail}</p>
+      <p>✅ ${t("Stayed safe", "安全だった回数")}: ${stats.safe}</p>
+
+      <p class="small">
+        ${t(
+					"Scams often look normal. Slowing down keeps you safe.",
+					"詐欺は普通に見えることがあります。落ち着くことが大切です。"
+				)}
+      </p>
+
+      <button class="safe" onclick="location.reload()">
+        ${t("Play again", "もう一度")}
+      </button>
+    </div>
+  `;
+			}
+
+			function next() {
+				queue = queue.filter((x) => x !== current);
+				current = null;
+
+				if (queue.length === 0 && scamPool.length === 0) {
+					endGame();
+				} else {
+					show("lock");
+					loadNotifications();
+				}
+			}
+
+			function show(id) {
+				document
+					.querySelectorAll(".screen")
+					.forEach((s) => s.classList.remove("active"));
+				document.getElementById(id).classList.add("active");
+			}
+
+			function decide(interacted) {
+				/*
+    interacted === true  → clicked the action
+    interacted === false → ignored
+  */
+
+				if (current.scam) {
+					if (interacted) {
+						fail(); // fell for scam
+					} else {
+						safe(
+							t(
+								"Good choice! Ignoring prevented the scam.",
+								"正解です。無視したことで詐欺を防げました。"
+							)
+						);
+					}
+				} else {
+					if (interacted) {
+						safe(
+							t(
+								"This was a legitimate message. Using the official method was safe.",
+								"正規のメッセージでした。正しい対応です。"
+							)
+						);
+					} else {
+						show("result");
+						result.innerHTML = `
+        <div class="message-box neutral">
+          <h3>ℹ️</h3>
+          <p>${current.result()}</p>
+          <p class="small">
+            ${t(
+							"Ignoring this was not dangerous, but important messages can be missed.",
+							"危険ではありませんが、大事な連絡を見逃すことがあります。"
+						)}
+          </p>
+          <button onclick="next()" class="safe">OK</button>
+        </div>
+      `;
+					}
+				}
+			}
+
+			loadNotifications();
+			renderNowPlaying();
+		</script>
+	</body>
+</html>

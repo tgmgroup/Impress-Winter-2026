@@ -737,9 +737,37 @@
 							</div>
 						</div>
 
+						<div class="items hidden-text" id="text1-2">
+							<!-- Modal content -->
+							<div class="modal-content-slideshow">
+								<div class="modal-header">
+									<span
+										class="close clickable"
+										onClick="ResetPlayAndShowWithNav('audio1-2', 'text1-2', 'play1-2','prev-portrait', 'next-portrait')"
+										>&times;</span
+									>
+								</div>
+
+								<div class="modal-body" style="display: flex; ">
+									<div><h3>Scam Simulator</h3>
+									<p><span class="tooltip">
+															Here is your phone. You will get a lot of notifications. Are they scams or not? Click through all 25 notifications and try to stay safe!<span class="tooltiptext"
+																>気をつけて、自分を守りましょう！</span
+															></span
+														></p></div>
+									<iframe src="scams.html" style="border-radius: 5%;"></iframe>
+								</div>
+
+							</div>
+						</div>
+
 						<!-- Audio -->
 
 						<audio id="audio1-1" class="playondemand">
+							<!-- empty audio, just used to open the modal -->
+							<source src="./assets/audio/audio3-2.mp3" type="audio/mp3" />
+						</audio>
+						<audio id="audio1-2" class="playondemand">
 							<!-- empty audio, just used to open the modal -->
 							<source src="./assets/audio/audio3-2.mp3" type="audio/mp3" />
 						</audio>
@@ -749,7 +777,7 @@
 				<div class="item sidebar sidebar-right">
 					<!-- Buttons for Intro Text -->
 
-										<form
+					<form
 						action="/apps/Crossword/index.html"
 						method="get"
 						target="_blank"
@@ -781,14 +809,14 @@
 					<button
 						class="center-items right-nav-buttons clickable"
 						type="button"
-						onClick="PlayAndShowWithNav('audio1-1', 'text1-1', 'play1-1', 'prev-portrait', 'next-portrait')"
+						onClick="PlayAndShowWithNav('audio1-2', 'text1-2', 'play1-2', 'prev-portrait', 'next-portrait')"
 					>
 						<img
-							id="play1-1"
+							id="play1-2"
 							class="audio-button-image clickable"
 							src="/assets/nav-images/play-g79150a13d_1280.png"
 						/>
-						<h6 style="margin: auto">Were You Scammed?</h6>
+						<h6 style="margin: auto">Scam Simulator</h6>
 					</button>
 				</div>
 			</div>

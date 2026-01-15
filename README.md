@@ -1,6 +1,6 @@
-# Impress-Fall-2025
+# Impress-Winter-2025
 
-This is the source code for the digital issue of *Impress Magazine: Fall, 2025*. *Impress Magazine* is an English-learning magazine for young Japanese readers. This is our effort to make it more interactive and accessible for readers everywhere.
+This is the source code for the digital issue of *Impress Magazine: Winter, 2025*. *Impress Magazine* is an English-learning magazine for young Japanese readers. This is our effort to make it more interactive and accessible for readers everywhere.
 
 ## Reading Impress
 

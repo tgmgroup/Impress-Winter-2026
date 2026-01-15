@@ -74,12 +74,14 @@
 			></span>
 			<span
 				class="abitem"
+				id="themeToggle"
 				style="float: right"
 				onclick="document.documentElement.classList.toggle('dark');"
 				><i class="fa fa-user"></i
 			></span>
 		</div>
 		<div id="drawer">
+			<button id="themeToggle">Toggle theme</button>
 			<p style="padding: 1em">Choose how much words in a single game level:</p>
 			<div class="ditem" onclick="setqcount(15)">
 				<i class="fa fa-pencil" style="color: #2a797a"></i> 15 Words
@@ -92,5 +94,14 @@
 			</div>
 		</div>
 		<script src="clues.js"></script>
+		<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("toggle");
+
+  btn.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+    console.log(document.documentElement.className);
+  });
+		</script>
 	</body>
 </html>
