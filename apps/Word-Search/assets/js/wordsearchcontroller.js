@@ -16,11 +16,11 @@ function WordSearchController(gameId, listId, solveId, newGameId, instructionsId
 	//an object containing various themes/words for the game
 	var searchTypes = {
 
-		"Insects": [["insect", "dig", "fly", "flying"],
-			["mosquito", "bite", "pollinate", "pollen"],
-			["ground", "soil", "tunnel", "ant"],
-			["improve", "feed", "remember", "beetle"],
-			["hole", "healthy", "stomach", "ladybug"]],
+		"Vocabulary": [["archaeologist", "adventure", "absolutely", "national"],
+			["designated", "cultural", "property", "official"],
+			["storehouse", "unlock", "padlock", "impressive"],
+			["armour", "hairstyle", "pigtails", "honest"],
+			["allowed", "unfortunately", "treasures", "museum"]],
 	};
 
 	//variables to store game logic and it's view

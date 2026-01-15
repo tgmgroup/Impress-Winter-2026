@@ -40,19 +40,19 @@
 	--border-radius: 8px;
 
 	--cell-highlight-color: #f8f8f8;
-	--cell-highlight-color-hover: rgb(210, 141, 242);
-	--cell-highlight-color-selectable: rgb(230, 206, 234);
-	--cell-highlight-color-selected: rgb(169, 90, 205);
-	--cell-highlight-color-found: rgb(147, 123, 158);
+	--cell-highlight-color-hover: rgb(141, 168, 242);
+	--cell-highlight-color-selectable: rgb(206, 206, 234);
+	--cell-highlight-color-selected: rgb(90, 98, 205);
+	--cell-highlight-color-found: rgb(123, 129, 158);
 	--cell-highlight-color-found-border: 1px black solid;
 	--cell-border: 0px rgba(255, 255, 255, 0.849);
 
-	--wordlist-color-found: rgb(62, 17, 78);
+	--wordlist-color-found: rgb(19, 17, 78);
 
 	--box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.015),
 		0 6px 20px 0 rgba(0, 0, 0, 0.015);
 	--text-color: #333333; /* Dark text for light mode */
-	--bg-image: linear-gradient(203deg, #ffc3fbbe 0%, #e4a8fab8 30%);
+	--bg-image: linear-gradient(203deg, #031155be 0%, #a8adfab8 30%);
 	--nav-icon-color: #555555;
 	--link-text: #171418;
 	--link-hover-bg: #ffffffc2;

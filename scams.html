@@ -2,14 +2,40 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<title>Scam Town — Phone Challenge</title>
+		<title>Scam Simulation — Phone Challenge</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 		<style>
+			/* ==========================================================================
+   1. FONT SETUP
+   ========================================================================== */
+
+			@font-face {
+				font-family: "Klee One";
+				src: url("/assets/font/kleeone_regular.ttf") format("truetype");
+				font-weight: normal;
+				font-display: swap; /* Improves perceived performance */
+			}
+
+			@font-face {
+				font-family: "Klee One";
+				src: url("/assets/font/kleeone_semibold.ttf") format("truetype");
+				font-weight: bold;
+				font-display: swap;
+			}
+
+			@font-face {
+				font-family: "Noto Sans JP";
+				src: url("/assets/font/NotoSansJP-VariableFont_wght.ttf")
+					format("truetype");
+				font-weight: 100;
+				font-style: normal;
+				font-display: swap; /* Improves perceived performance */
+			}
 			body {
 				margin: 0;
 				background: #020617;
-				font-family: system-ui, sans-serif;
+				font-family: "Klee One", "Noto Sans JP", system-ui, sans-serif;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -31,6 +57,7 @@
 				width: 360px;
 				height: 640px;
 				background: #020617;
+				border: 6px solid #cecece;
 				border-radius: 28px;
 				box-shadow: 0 20px 70px rgba(0, 0, 0, 0.7);
 				overflow: hidden;
@@ -161,15 +188,15 @@
 			<div id="phone">
 				<!-- STATUS BAR -->
 				<div id="status">
-					<div id="carrier">📶 LTE</div>
+					<div id="carrier">📶 5G</div>
 					<div id="icons">
 						<span>📡</span>
-						<span id="battery">🔋 100%</span>
+						<span id="battery">🔋 99%</span>
 					</div>
 				</div>
 
 				<!-- LOCK SCREEN -->
-				<div class="screen lock active" id="lock">
+				<div class="screen lock active" id="lock" style="background-image: url(/assets/Web/page07.jpg);">
 					<button id="langToggle">日本語</button>
 					<div class="time" id="clock">--:--</div>
 
@@ -459,10 +486,10 @@
 					title: () => t("My Number", "マイナンバーカード"),
 					text: () =>
 						t(
-							"Your registration has an issue: https://my.number.info/error",
-							"登録情報に問題があります： https://my.number.info/error"
+							"Your registration has an issue",
+							"登録情報に問題があります"
 						),
-					detail: () => t("Submit details now.", "情報を入力してください"),
+					detail: () => t("Submit details now: https://my.number.info/error", "情報を入力してください： https://my.number.info/error"),
 					action: () => t("Submit", "送信"),
 					result: () =>
 						t(
