@@ -20,7 +20,7 @@ var ttss = [
 			clue: "困っている: She is (困っている) and needs money.",
 		},
 		{
-			word: "it’s easy to",
+			word: "it is easy to",
 			clue: "〜するのは簡単だ: (〜するのは簡単だ) fall for scams.",
 		},
 		{
@@ -64,12 +64,12 @@ var ttss = [
 			clue: "〜に…を置かない: (を置かない) your password (〜に) public websites.",
 		},
 		{
-			word: "doesn’t stop at",
+			word: "does not stop at",
 			clue: "〜にとどまらない: The danger of scams (〜にとどまらない) money loss.",
 		},
 		{
-			word: "fake persona",
-			clue: "偽の人物像: The scammer created a (偽の人物像) online.",
+			word: "persona",
+			clue: "人物像: The scammer created a fake (人物像) online.",
 		},
 		{
 			word: "AI-powered",

@@ -99,9 +99,9 @@ html.dark {
 	--link-hover-bg: #000000ac;
 	--cta-bg: var(--nav-icon-color);
 	--cta-text: var(--nav-bg); /* Dark text for light button in dark mode */
-	--tooltip-color: rgb(203, 211, 243); /* Highlight the word */
+	--tooltip-color: rgb(211, 226, 247); /* Highlight the word */
 	--tooltip-text-color: #fff; /* Tooltip text color for dark mode */
-	--tooltip-bg-color: #2f2e2e; /* Tooltip background color for dark mode */
+	--tooltip-bg-color: #29282fef; /* Tooltip background color for dark mode */
 	--slide-button-bg: rgba(255, 255, 255, 0.2);
 	--slide-button-hover-bg: rgba(255, 255, 255, 0.4);
 	--slide-button-text: white;
