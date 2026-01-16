@@ -168,3 +168,29 @@ volumeSlider.addEventListener("input", () =>
 speedSlider.addEventListener("input", () =>
 	sound.rate(parseFloat(speedSlider.value))
 );
+
+function stopAudioPlayer() {
+   // 1. Tell Howler to stop the sound
+    // This automatically pauses and resets the seek time to 0
+    if (sound) {
+        sound.stop();
+    }
+
+    // 2. Reset the Play/Pause button icon
+    const playBtn = document.getElementById("playPauseBtn");
+    if (playBtn) {
+        playBtn.textContent = "▶️";
+    }
+
+    // 3. Reset the time display
+    const timeDisplay = document.getElementById("currentTime");
+    if (timeDisplay) {
+        timeDisplay.textContent = "0:00";
+    }
+
+    // 4. Reset the Waveform visual
+    // This is important! stop() doesn't clear the canvas progress.
+    if (typeof drawWaveform === "function") {
+        drawWaveform(0); 
+    }
+}

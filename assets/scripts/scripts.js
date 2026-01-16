@@ -55,6 +55,7 @@ function ResetPlayAndShow(audioSound, textDiv, audioImage) {
 	myAudio.style.display = "none"; // Hide the audio controls
 	myText.style.display = "none";
 	myButton.src = "./assets/nav-images/play-g79150a13d_1280.png";
+	stopAllAudio();
 }
 
 function PlayAndShowWithNav(
@@ -134,6 +135,7 @@ function ResetPlayAndShowWithNav(
 	myButton.src = "./assets/nav-images/play-g79150a13d_1280.png";
 	navLeftButton.style.visibility = "visible";
 	navRightButton.style.visibility = "visible";
+	stopAllAudio();
 }
 
 function PlaySound(audioSound, audioImage) {
@@ -253,6 +255,7 @@ function PlayQuickSound(audioSound) {
 function HideDiv(textDiv) {
 	var myText = document.getElementById(textDiv);
 	myText.style.display = "none";
+	stopAllAudio();
 }
 
 function PlayAndShowGallery(audioSound, textDiv, audioImage) {
@@ -292,6 +295,7 @@ function ResetPlayAndShowGallery(audioSound, textDiv, audioImage) {
 	//myText.style.display = "none";
 	myButton.style.visibility = "hidden";
 	myButton.src = "./assets/nav-images/play-g79150a13d_1280.png";
+	stopAllAudio();
 }
 
 function playHoverSoundOnClass(className) {
@@ -439,3 +443,20 @@ document.addEventListener("mousemove", (e) => {
 	tooltip.style.left = e.clientX + "px";
 	tooltip.style.top = e.clientY + "px";
 });
+
+
+function stopAllAudio() {
+    const allAudio = document.querySelectorAll("audio");
+    allAudio.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+    });
+
+    // Also reset all play buttons back to the "play" icon
+    const allButtons = document.querySelectorAll(".thumbnail, .audio-btn"); // adjust selector to your class
+    allButtons.forEach(btn => {
+        if (btn.src.includes("stop")) {
+            btn.src = "./assets/nav-images/play-g79150a13d_1280.png";
+        }
+    });
+}

@@ -4,10 +4,12 @@ showSlides1(slideIndex1);
 
 function plusSlides1(n) {
     showSlides1(slideIndex1 += n);
+    stopAllAudio();
 }
 
 function currentSlide1(n) {
     showSlides1(slideIndex1 = n);
+    stopAllAudio();
 }
 
 function showSlides1(n) {
@@ -32,10 +34,12 @@ showSlides2(slideIndex2);
 
 function plusSlides2(n) {
     showSlides2(slideIndex2 += n);
+    stopAllAudio();
 }
 
 function currentSlide2(n) {
     showSlides2(slideIndex2 = n);
+    stopAllAudio();
 }
 
 function showSlides2(n) {
