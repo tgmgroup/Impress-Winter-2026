@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -28,7 +28,7 @@
 				try {
 					const savedTheme = localStorage.getItem("theme");
 					const prefersDark = window.matchMedia(
-						"(prefers-color-scheme: dark)"
+						"(prefers-color-scheme: dark)",
 					).matches;
 					if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
 						document.documentElement.classList.add("dark");
@@ -85,7 +85,7 @@
 					class="item content-center"
 					id="page-content"
 					style="
-						background-image: url('/assets/Web/page034.jpg');
+						background-image: url(&quot;/assets/Web/page034.jpg&quot;);
 						background-size: contain;
 						background-position: center;
 						background-repeat: no-repeat;
@@ -180,7 +180,7 @@
 											<div class="slide-content">
 												<div class="image-panel">
 													<img
-														src="/assets/Web/Aikawa/Ryan.jpg"
+														src="/assets/Web/Aikawa/school.jpg"
 														class="slide-image"
 														alt="Ryan"
 													/>
@@ -402,8 +402,9 @@
 															></span
 														>
 														on the large grey door and invited me inside. Wow,
-														four impressive haniwa statues were there to greet
-														me and they had been here for over 1,300 years!
+														four impressive <i>haniwa</i> statues were there to
+														greet me and they had been here for over 1,300
+														years!
 													</p>
 													<div class="numbertext">5 / 8</div>
 												</div>
@@ -448,8 +449,8 @@
 													>
 														A warrior stood in armour with a bow and sword and a
 														boy playing the biwa. Beside them, two men with a
-														nice hairstyle called sage-mizura. I learnt that
-														only people such as kings or
+														nice hairstyle called <i>sage-mizura</i>. I learnt
+														that only people such as kings or
 														<span class="tooltip"
 															>high ranking officials<span class="tooltiptext"
 																>高官</span
@@ -467,7 +468,8 @@
 																>ツインテイル</span
 															></span
 														>
-														for men but, I do prefer it over the chon-mage
+														for men but, I do prefer it over the
+														<i>chon-mage</i>
 														<span class="tooltip"
 															>to be honest<span class="tooltiptext"
 																>実を言うと</span
@@ -528,7 +530,8 @@
 																>許可される</span
 															></span
 														>
-														of the main haniwa so you’ll just have to visit and
+														of the main <i>haniwa</i> so you’ll just have to
+														visit and
 														<span class="tooltip"
 															>see them for yourself<span class="tooltiptext"
 																>自分の目で見る</span
@@ -606,8 +609,8 @@
 																<br /><b style="font-size: 1.7rem"
 																	>There are buildings from the Edo Period, a
 																	beautiful old tea house, a shrine, a
-																	storehouse with four impressive haniwa, and
-																	other cultural properties.</b
+																	storehouse with four impressive <i>haniwa</i>,
+																	and other cultural properties.</b
 																>
 															</li>
 															<li style="font-size: 1.2rem">
@@ -644,7 +647,7 @@
 											onclick="currentSlide1(1)"
 										/>
 										<img
-											src="/assets/Web/Aikawa/Ryan.jpg"
+											src="/assets/Web/Aikawa/school.jpg"
 											alt="Ryan"
 											class="thumbnail1 thumbnail"
 											onclick="currentSlide1(2)"
